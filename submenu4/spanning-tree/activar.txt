@@ -1,0 +1,7 @@
+
+enable
+configure
+spanning-tree
+spanning-tree mode rstp
+exit
+exit

@@ -1,0 +1,89 @@
+! 
+enable 
+configure 
+interface gigabitEthernet 1/0/1 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/2 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/3 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/4 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/5 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/6 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/7 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/8 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/9 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/10 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/11 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/12 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/13 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/14 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/15 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/16 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/17 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/18 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/19 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/20 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/21 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/22 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/23 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/24 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/25 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/26 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/27 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/28 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+exit 
+exit 

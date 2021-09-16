@@ -1,0 +1,6 @@
+
+enable
+configure
+system-time ntp UTC+01:00 X X 12
+exit
+exit

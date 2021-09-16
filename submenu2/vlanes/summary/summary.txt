@@ -1,0 +1,6 @@
+
+enable
+configure
+show vlan summary
+exit
+exit

@@ -1,0 +1,8 @@
+
+enable
+configure
+interface vlan X
+ip address X X
+description X
+exit
+exit

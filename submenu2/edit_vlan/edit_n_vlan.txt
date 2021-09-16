@@ -1,0 +1,7 @@
+
+enable
+configure
+vlan X
+name X
+exit
+exit

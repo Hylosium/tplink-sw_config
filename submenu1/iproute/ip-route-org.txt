@@ -1,0 +1,6 @@
+
+enable
+configure
+ip route X X X X
+exit
+exit

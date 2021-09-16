@@ -1,0 +1,6 @@
+
+enable
+configure
+no spanning-tree
+exit
+exit

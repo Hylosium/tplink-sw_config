@@ -1,0 +1,10 @@
+1. https://www.doubleradius.com/site/stores/tp-link/tp-link-jetstream-t2600g-l2-managed-switch-guide.pdf
+2. https://stackoverflow.com/questions/3827567/how-to-get-the-path-of-the-batch-script-in-windows
+3. https://www.lawebdelprogramador.com/foros/Ms-Dos/1037676-Bat-con-variables.html
+4. https://profesorweb.es/2014/01/comandos-goto-if-y-else/
+5. https://stackoverflow.com/questions/2048509/how-to-echo-with-different-colors-in-the-windows-command-line
+6. https://www.codeproject.com/Questions/5250523/How-to-change-color-of-a-specific-line-in-batch-sc
+7. https://stackoverflow.com/questions/60034/how-can-you-find-and-replace-text-in-a-file-using-the-windows-command-line-envir
+8. https://stackoverflow.com/questions/19168475/powershell-to-remove-text-from-a-string
+9. https://community.spiceworks.com/topic/581479-send-enter-key-in-a-batch-file
+10. https://community.spiceworks.com/how_to/144540-show-and-configure-ipv4-on-the-windows-cmd-command-prompt-with-netsh-set-ip-address

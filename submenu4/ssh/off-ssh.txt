@@ -1,0 +1,6 @@
+
+enable
+configure
+no ip ssh server
+exit
+exit

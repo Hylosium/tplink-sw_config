@@ -1,0 +1,6 @@
+
+enable
+show cpu-utilization
+show memory-utilization
+exit
+exit

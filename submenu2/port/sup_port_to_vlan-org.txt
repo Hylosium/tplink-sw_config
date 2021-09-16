@@ -1,0 +1,8 @@
+!
+enable
+configure
+interface gigabitEthernet 1/0/X
+no switchport mode general
+no switchport general allowed vlan X
+exit
+exit

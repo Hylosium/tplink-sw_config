@@ -1,0 +1,1 @@
+plink -serial COM4 -sercfg 38400,8,n,1 < "ultimate.txt"

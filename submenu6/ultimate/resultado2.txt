@@ -1,0 +1,10 @@
+! 
+ECHO est  activado.
+interface gigabitEthernet 1/0/15 
+switchport general allowed vlan 2,3,4,6 tagged 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 
+interface gigabitEthernet 1/0/1 
+switchport general allowed vlan 2,3,4,6 tagged 
+loopback-detection config process-mode port-based recovery-mode auto 
+loopback-detection 

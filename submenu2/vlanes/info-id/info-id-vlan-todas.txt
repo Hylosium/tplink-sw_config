@@ -1,0 +1,11 @@
+
+enable
+configure
+show vlan id 1
+show vlan id 2
+show vlan id 3
+show vlan id 4
+show vlan id 6
+show vlan id 21
+exit
+exit

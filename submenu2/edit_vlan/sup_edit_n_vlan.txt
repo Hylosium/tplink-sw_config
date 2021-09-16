@@ -1,0 +1,6 @@
+
+enable
+configure
+no vlan X
+exit
+exit

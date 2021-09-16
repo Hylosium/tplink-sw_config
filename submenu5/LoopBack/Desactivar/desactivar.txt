@@ -1,0 +1,6 @@
+
+enable
+configure
+no loopback-detection
+exit
+exit

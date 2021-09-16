@@ -1,0 +1,25 @@
+! 
+enable 
+configure 
+interface gigabitEthernet 1/0/15 
+no loopback-detection 
+interface gigabitEthernet 1/0/16 
+no loopback-detection 
+interface gigabitEthernet 1/0/17 
+no loopback-detection 
+interface gigabitEthernet 1/0/18 
+no loopback-detection 
+interface gigabitEthernet 1/0/19 
+no loopback-detection 
+interface gigabitEthernet 1/0/20 
+no loopback-detection 
+interface gigabitEthernet 1/0/21 
+no loopback-detection 
+interface gigabitEthernet 1/0/22 
+no loopback-detection 
+interface gigabitEthernet 1/0/23 
+no loopback-detection 
+interface gigabitEthernet 1/0/24 
+no loopback-detection 
+exit 
+exit 

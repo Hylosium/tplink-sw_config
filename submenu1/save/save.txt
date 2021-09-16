@@ -1,0 +1,5 @@
+
+enable
+copy running-config startup-config
+exit
+exit
