@@ -1,0 +1,1 @@
+    Prefijo de subred:                        192.168.1.0/24 (m scara 255.255.255.0)

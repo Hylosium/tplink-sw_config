@@ -1,0 +1,1 @@
+    Servidores DNS configurados a trav‚s de DHCP:  192.168.1.21
