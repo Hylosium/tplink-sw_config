@@ -1,30 +1,30 @@
 ﻿                   
 :: -----------------TAREAS--->>>>>>-----------------
-:: 1. Limpiar código.
-:: 2. Traducir al inglés y publicar en GitHub.
+:: 1. Clean code.
+:: 2. Clean translation from spanish to english, used Microsoft Translator.
 :: -------------------------------------------------
 @echo off
-rem Para que no muestre todo con mucho desorden?
+rem used to disable the echoing
 ::----------
 setlocal EnableExtensions-
-:: Ni idea, solo sé que hace magia
+:: No idea, I just know it does magic
 ::----------
-chcp 65001
-rem Es para elegir una tipografía en español.
+chcp 437
+rem Supporte code page for United States.
 SET mypath=%~dp0
 ECHO %mypath:~0,-1%
-rem Con esto ponemos la ruta de ejecución desde donde se ejecuta el '.bat'
-title MENÚ DE CONFIGURACIÓN DEL SWITCH 'TLXXXX-XXTS v2.0' POR SERIAL v0.090
-rem Título que sale arriba en la ventana de CMD.
+rem With this we put the execution path from where the '.bat' is executed
+title CONFIGURAITON MENU OF SWITCH 'TLXXXX-XXTS v2.0' BY USB/SERIAL v0.090 @Hylosium
+rem Title that appears above in the CMD window.
 rem ===============================
 rem -------------------------------
-rem subMenú 1
+rem subMenu 1
 copy /Y .\submenu1\contc_info\contact-org.txt .\submenu1\contc_info\contact.txt
 copy /Y .\submenu1\hostname\hostname-org.txt .\submenu1\hostname\hostname.txt
 copy /Y .\submenu1\location\location-org.txt .\submenu1\location\location.txt
 copy /Y .\submenu1\ntp\ip-srv-ntp-org.txt .\submenu1\ntp\ip-srv-ntp.txt
 copy /Y .\submenu1\iproute\ip-route-org.txt .\submenu1\iproute\ip-route.txt
-rem subMenú 2
+rem subMenu 2
 copy /Y .\submenu2\dir_IP\dirIP-org.txt .\submenu2\dir_IP\dirIP.txt
 copy /Y .\submenu2\edit_vlan\edit_n_vlan-org.txt .\submenu2\edit_vlan\edit_n_vlan.txt
 copy /Y .\submenu2\edit_vlan\sup_edit_n_vlan-org.txt .\submenu2\edit_vlan\sup_edit_n_vlan.txt
@@ -34,32 +34,32 @@ copy /Y .\submenu2\port\sup_port_to_vlan-org.txt .\submenu2\port\sup_port_to_vla
 copy /Y .\submenu2\vlanes\info-id\info-id-vlan-org.txt .\submenu2\vlanes\info-id\info-id-vlan.txt
 rem -------------------------------
 rem ===============================
-rem Lo de arriba se utiliza para limpiar las configuraciones, así cada vez que ejecutes el menú estarán por defecto, entonces si no te funciona algo como querías con volver a abrir el menú ya estaría por defecto.
+rem The above is used to clean the settings, so every time you run the menu they will be by default, so if something does not work for you as you wanted, just reopen the menu it would already be by default.
 rem -------------------------------
-rem Ya funciona la v1.0 y la v2.0 de los SW TP-LINK :)
-rem La v4 (que es mas vieja que la v2) no sé si funcionará
+rem Working great with V1.0 and v2.0 of the SW TP-LINK :)
+rem V4 (which is older than v2) I don't know if it will work
 cls
 
 chgport | findstr "COM"
 echo.
-set /P pCOM=Indícame el puerto COM por el que se conecta el SW:
-echo Tu puerto elegido ha sido el COM%pCOM%
+set /P pCOM=Tell me the COM port through which the SW connects:
+echo Your chosen port has been the COM%pCOM%
 set bRate=38400
-set /P bRate=Indícame el Baud Rate para el SW (si lo dejas vacio tendrá '%bRate%'):
-echo Has elegido %bRate% de Baud Rate.
+set /P bRate=Tell me the Baud Rate for the SW (if you leave it empty it will have'%bRate%'):
+echo You have chosen %bRate% for Baud Rate.
 set dBits=8
-set /P dBits=Indícame los data Bits (si lo dejas vacio tendrá '8'):
-echo Has elegido %dBits% de Data Bits.
+set /P dBits=Tell me the data Bits (if you leave it empty it will have '8'):
+echo You have chosen %dBits% of Data Bits.
 set pArity=n
-set /P pArity=Indícame la 'Parity'(si lo dejas vacio será 'n'):
-echo Has elegido %pArity% de Parity.
+set /P pArity=Tell me the 'Parity' (if you leave it empty it will be 'n'):
+echo You have chosen %pArity% of Parity.
 set sBits=1
-set /P sBits=Indícame los 'Stop Bits'(si lo dejas vacio será de '1'):
-echo Has elegido %sBits% de Stop Bits.
+set /P sBits=Tell me the 'Stop Bits' (if you leave it empty it will be '1'):
+echo You have chosen %sBits% of Stop Bits.
 cls
 netsh interface ipv4 show interfaces
-set /P interfaceYou=Indícame el número de la izquierda del adptador de red que quieres usar:
-:: Para que puedes elegir varios parametros para conectarse a cualquier SW TP-LINK(v1,v2 y v4) desde cualquier PC con cualquier dadaptador de Red.
+set /P interfaceYou=Tell me the number on the left of the network adapter you want to use:
+:: So you can choose several parameters to connect to any SW TP-LINK(v1, v2 and v4) from any PC with any Network dadapter.
 
 
 
@@ -73,32 +73,30 @@ for /f "tokens=3" %%4 in (.\submenu8\IPv4.txt) do set IPv4=%%4
 for /f "tokens=6" %%m in (.\submenu8\netMASK.txt) do set netMask=%%m
 set netMask=%netMask:~0,-1%
 for /f "tokens=5" %%w in (.\submenu8\GW.txt) do set GW=%%w
-for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
+for /f "tokens=8" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 
 	cls
-	rem Limpio todo lo que había hasta esta línea.
+	rem I clean everything there was up to this line.
 	ECHO.    
-    ECHO.     Menú de Opciones
+    ECHO.     Options Menu
     ECHO.     
-    ECHO.     1.- Modificar y/o Revisar información del SW.
-    ECHO.     2.- Configuración de VLANES.
-	ECHO.    [93m 3.- Entrar en el CLI del SW. [0m
-    ECHO.     4.- Activar o Desactivar diferentes tecnologías [RSTP/FTP.SSH.LOOPBACK.].
-    ECHO.     5.- Modificar puertos [LOOPBACK.JUMBO..].
-    ECHO.     6.- Configuración [1;101;93m Secuencial Completa[0m.
-    ECHO.     7.- Configurar puerto de CONEXIÓN.
-    ECHO.     8.- Configuraciones IP
-    ECHO.     9.- Ayuda.
-    ECHO.     10/Q.- Salir.
+    ECHO.     1.- Modify and/or Review SW information.
+    ECHO.     2.- VLANES configuration.
+	ECHO.    [93m 3.- Enter the SW CLI. [0m
+    ECHO.     4.- Enable or Disable different technologies [RSTP/FTP.SSH.LOOPBACK.].
+    ECHO.     5.- Modify [LOOPBACK. JUMBO..].
+    ECHO.     6.- Complete [1;101;93m Sequential Configuration[0m.
+    ECHO.     7.- Configure CONNECTION port.
+    ECHO.     8.- IP Configurations
+    ECHO.     9.- Help.
+    ECHO.     10/Q.- Exit.
 	ECHO.
 	ECHO.
 	::IF "%IPv4%"   ==  "%IPv4%"  ECHO. [102m √ [0m The page works greatly, no needs to reload.
-	::IF "%IPv4%x"   ==  "x"  ECHO. [7;31m X [0m The page hasen't charge correctñy, please, reload.
-    ECHO.	   	  
-    ECHO.	   	  
+	::IF "%IPv4%x"   ==  "x"  ECHO. [7;31m X [0m The page hasen't charge correctñy, please, reload.	   	  
 	echo.     ___________________________________
 	echo.     ^|                                  
-	Echo.     ^|[1mCOM%pCOM%[0m [Puerto Serial]
+	Echo.     ^|[1mCOM%pCOM%[0m [Serial Port]
 	Echo.     ^|[1m%bRate%[0m [Baud Rate]
 	Echo.     ^|[1m%dBits%[0m [Data Bits]
 	Echo.     ^|[1m%pArity%[0m [Parity]
@@ -110,10 +108,12 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 	echo.     ^|[1m%GW%[0m   [GW]
 	echo.     ^|[1m%dns%[0m       [DNS]
 	Echo.     ^|__________________________________
+	echo.	This don't always get the correct parameters
+	:: This works by getting the parameters form "netsh" command, does not work great ever.
 	ECHO.
 	set MenuOpc0=""
-    set /P MenuOpc0=Su Opción es:
-	rem Se espera un valor, del 1 al 10 o Q para guardar en una variable y que compare con los IF's de abajo y te lleve a otra parte para continuar.
+    set /P MenuOpc0=Your Choice is:
+	rem A value, from 1 to 10 or Q is expected to save in a variable and compare with the IF's below and take you elsewhere to continue.
 	
 	IF "%MenuOpc0%x"   ==  "x"  goto MENU0
 	IF "%MenuOpc0%x"   ==  "x"  goto MENU0
@@ -131,16 +131,16 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
     IF "%MenuOpc0%"    ==  "1"  goto MenuOpc0_1
 	
 cls	
-ECHO ============ENTRADA INCORRECTA============
+ECHO ============INCORRECT ENTRY============
 ECHO -------------------------------------
-ECHO Por favor, elige un número del menú
-ECHO Menu [1-9] o elige '10 o Q' para salir.
+ECHO Please choose a number from the menu
+ECHO Menu [1-9] or choose '10 or Q' to exit.
 ECHO -------------------------------------	
-ECHO ======ESPERE A SER REEDIRIGIDO...======
+ECHO ======WAIT TO BE REDIRECTED...======
 timeout 4
 
 	goto MENU0
-	rem Si no se ha ingresado un número entre el 1 y el 10 o Q to devolverá al principio del menú, es decir lo 'reinicia'
+	rem If a number between 1 and 10 or Q has not been entered, it will return to the beginning of the menu, i.e. 'restart' it
 	
 	
 goto MENU0	
@@ -149,20 +149,20 @@ rem subMENÚ [1] ---------------------------------------------------------------
 		:subMenu1
 			
 		cls
-		ECHO. Modificar y/o Revisar información del SW - SUBMENÚ 1	
+		ECHO. Modify and/or Revise SW Information - SUBMENU 1
 		ECHO.     
 		ECHO.     
-		ECHO.     1.- Nombre del SW
-		ECHO.     2.- Localización del SW.
-		ECHO.     3.- Información de contacto del SW.
-		ECHO.    [1m 4.- Devolver valores de fábrica al SW. [0m
-		ECHO.     5.- USO de CPU y de MEMORIA.
-		ECHO.    [93m 6.- Guardar la configuración actual. [0m
-		ECHO.     7.- IP Servidor NTP.
-		ECHO.     8.- Configurar Static Routing
-		ECHO.     9/Q.- Volver.
+		ECHO.     1.- SW Name
+		ECHO.     2.- Location of the SW.
+		ECHO.     3.- SW contact information.
+		ECHO.    [1m 4.- Return factory values to SW. [0m
+		ECHO.     5.- CPU and MEMORY USAGE.
+		ECHO.    [93m 6.- Save the current settings. [0m
+		ECHO.     7.- IP NTP Server.
+		ECHO.     8.- Configure Static Routing
+		ECHO.     9/Q.- Return.
 		set SubMenuOpc1=""
-		set /P SubMenuOpc1=Su Opción es:
+		set /P SubMenuOpc1=Your Choice is:
 		
 		IF "%SubMenuOpc1%x"   ==  "x"  goto MenuOpc0_1
 		IF "%SubMenuOpc1%"    ==  "9"  goto SubMenuOpc1_9
@@ -178,22 +178,22 @@ rem subMENÚ [1] ---------------------------------------------------------------
 		IF "%SubMenuOpc1%"    ==  "1"  goto SubMenuOpc1_1
 		
 		cls
-		ECHO ============ENTRADA INCORRECTA============
+		ECHO ============INCORRECT ENTRY============
 		ECHO -------------------------------------
-		ECHO Por favor, elige un número del menú
-		ECHO Menu [1-9] o elige '10 o Q' para salir.
-		ECHO -------------------------------------
-		ECHO ======ESPERE A SER REEDIRIGIDO======	
+		ECHO Please choose a number from the menu
+		ECHO Menu [1-9] or choose '10 or Q' to exit.
+		ECHO -------------------------------------	
+		ECHO ======WAIT TO BE REDIRECTED...======	
 		timeout 4
 		goto subMenu1
 
 		:SubMenuOpc1_1
 		cls
-		ECHO Opción - 1
-		rem Para elegir si quieres modificar el nombre 'hostname' del SW.
+		ECHO Option - 1
+		rem To choose if you want to modify the 'hostname' name of the SW.
 		set verificar1_1=""
-		set /P verificar1_1=Elige '1' para cambiar el nombre,'2' para cancelar o 'Q' para salir:
-		rem Te pregunta que quieres hacer y según lo que escribas lo guardará en una variable que su valor comprobará con unos cuantos 'IF' y te llevará a otra parte donde ejecutara X o Y cosa .
+		set /P verificar1_1=Choose '1' to rename, '2' to cancel or 'Q' to exit:
+		rem It asks you what you want to do and according to what you write it will save it in a variable that its value will check with a few 'IF' and will take you to another part where it will execute X or Y thing.
 		
 		IF "%verificar1_1%x"=="x" (goto SubMenuOpc1_1)
 		IF "%verificar1_1%"=="Q" (goto subMenu1)
@@ -204,30 +204,30 @@ rem subMENÚ [1] ---------------------------------------------------------------
 		IF "%verificar1_1%"=="2" (goto subMenu1_1_NO)
 		
 		cls
-		ECHO ============ENTRADA INCORRECTA============
-		ECHO Por favor, escribe '1' o '2' o 'Q'
+		ECHO ============INCORRECT ENTRY============
+		ECHO Please, choose '1' or '2' or 'Q'
 		ECHO -------------------------------------
-		ECHO ======ESPERE A SER REEDIRIGIDO======		
+		ECHO ======WAIT TO BE REDIRECTED======		
 		timeout 3
 		goto subMenu1
 		
 			:subMenu1_1_SI
 			cls
-				set /P cambiar_nombre1_1=Escribe aquí el nombre que quieras "sin tildes ni caracteres raros":
-				rem Te pregunta que nombre quieres ponerle, tú se lo escribes y lo guarda en la variable 'cambiar_nombre1_1'
+				set /P cambiar_nombre1_1=Type here the name you want "without tildes or rare characters":
+				rem He asks you what name you want to give it, you write it and save it in the variable 'cambiar_nombre1_1'
 				powershell -Command "(gc .\submenu1\hostname\hostname.txt) -replace '"hostname .*"', '"hostname %cambiar_nombre1_1%"' | Out-File -encoding ASCII .\submenu1\hostname\hostname.txt"
-				rem Función de powershell que se utiliza en CMD, se remplaza lo que hay en el archivo de texto '.txt' que enviaremos al SW por Serial.
-				echo El nuevo nombre para tu SW será %cambiar_nombre1_1%
-				rem Te muestra que nombre has elegido.
+				rem Powershell function that is used in CMD, replaces what is in the text file '.txt' that we will send to the SW by Serial.
+				echo The new name for your SW will be %cambiar_nombre1_1%
+				rem It shows you which name you have chosen.
 				plink -serial COM%pCOM% -sercfg %bRate%,%dBits%,%pArity%,%sBits% < ".\submenu1\hostname\hostname.txt"
 				
 				timeout 3
-				rem Se utiliza el 'pause' para que no se vaya todo de golpe y puedes leerlo.
+				rem The 'pause' is used so that everything does not go away at once and you can read it.
 				goto subMenu1
 			:subMenu1_1_NO
 			cls
-				rem No está hecho...
-				echo Entendido ;)
+				rem Not done...
+				echo Understood ;)
 				timeout 3
 				goto subMenu1
 			
@@ -237,9 +237,9 @@ rem subMENÚ [1] ---------------------------------------------------------------
 		
 		:SubMenuOpc1_2
 		cls
-		rem Cambiar la localización del SW.
-		ECHO Opción - 2
-		set /P elegir_sitio1_2=Escríbeme dónde va a estar este SW:
+		rem Change the location of the SW.
+		ECHO Option - 2
+		set /P elegir_sitio1_2=Write where this SW is going to be::
 		powershell -Command "(gc .\submenu1\location\location.txt) -replace '"location .*"', '"location %elegir_sitio1_2%"' | Out-File -encoding ASCII .\submenu1\location\location.txt"
 		plink -serial COM%pCOM% -sercfg %bRate%,%dBits%,%pArity%,%sBits% < ".\submenu1\location\location.txt"
 		timeout 3
@@ -247,21 +247,21 @@ rem subMENÚ [1] ---------------------------------------------------------------
 		
 		:SubMenuOpc1_3
 		cls
-		rem Cambiar la información de contacto del SW.
-		ECHO Opción - 3
+		rem Change the contact information for the SW.
+		ECHO Option - 3
 		set /P elegir_contc1_3=Escríbeme qué que quieres de información de contacto:
 		powershell -Command "(gc .\submenu1\contc_info\contact.txt) -replace '"contact-info .*"', '"contact-info %elegir_contc1_3%"' | Out-File -encoding ASCII .\submenu1\contc_info\contact.txt"
-		echo Tus nueos datos de contacto serán %elegir_contc1_3%
+		echo Your new contact details will be %elegir_contc1_3%
 		plink -serial COM%pCOM% -sercfg %bRate%,%dBits%,%pArity%,%sBits% < ".\submenu1\contc_info\contact.txt"
 		timeout 3
 		goto subMenu1
 		
 		:SubMenuOpc1_4
 		cls
-		rem Para devolver los valores de fábrica al SW.
-		ECHO Opción - 4
+		rem To return the factory values to the SW.
+		ECHO Option - 4
 		set verificar1_4=""
-		set /P verificar1_4= Vas a devolver al SW los parametros de fábrica que tenía, escribe "1" para confirmar o "2" para cancelar:
+		set /P verificar1_4= You are going to return to the SW the factory parameters it had, write "1" to confirm or "2" to cancel.
 		IF "%verificar1_4%"=="2" (goto No1_4)
 		IF "%verificar1_4%"=="2" (goto No1_4)
 		IF "%verificar1_4%"=="1" (goto Si1_4)
@@ -269,15 +269,15 @@ rem subMENÚ [1] ---------------------------------------------------------------
 		IF "%verificar1_4%x"=="x" (goto SubMenuOpc1_4)
 		
 		cls
-		ECHO ============ENTRADA INCORRECTA============
-		ECHO Por favor, escribe '1' o '2
+		ECHO ============INCORRECT ENTRY============
+		ECHO Please, choose '1' or '2'
 		ECHO -------------------------------------
-		ECHO ======ESPERE A SER REEDIRIGIDO======	
+		ECHO ======WAIT TO BE REDIRECTED======	
 		timeout 3
 		goto subMenu1
 			:No1_4
 			cls
-			ECHO Entendido :)
+			ECHO Undestood :)
 			timeout 3
 			goto subMenu1
 			:Si1_4
@@ -288,8 +288,8 @@ rem subMENÚ [1] ---------------------------------------------------------------
 		
 		:SubMenuOpc1_5
 		cls
-		rem Mostrar uso '%' de CPU y MEM utilizados.
-		ECHO Opción - 5
+		rem Show '%' usage of CPU and MEM used.
+		ECHO Option - 5
 		
 		plink -serial COM%pCOM% -sercfg %bRate%,%dBits%,%pArity%,%sBits% < ".\submenu1\show_utilization\script_resources_cpu&mem.txt"
 		ECHO 
@@ -304,17 +304,17 @@ rem subMENÚ [1] ---------------------------------------------------------------
 		
 		:SubMenuOpc1_6
 		cls
-		rem Guardar la congifuración (Save)
-		ECHO Opción - 6
+		rem Save the congifuración (Save)
+		ECHO Option - 6
 		plink -serial COM%pCOM% -sercfg %bRate%,%dBits%,%pArity%,%sBits% < ".\submenu1\save\save.txt"
 		timeout 3
 		goto subMenu1
 		:SubMenuOpc1_7
 		cls
-		rem Cambiar servidor IP NTP
-		ECHO Opción - 7
+		rem Change NTP IP Server
+		ECHO Option - 7
 
-		set /P elegir_ip-ntp_2_7=Escríbeme la IP del servidor NTP:
+		set /P elegir_ip-ntp_2_7=Write me the IP of the NTP server:
 		powershell -Command "(gc .\submenu1\ntp\ip-srv-ntp.txt) -replace '":00 .*"', '":00 %elegir_ip-ntp_2_7% %elegir_ip-ntp_2_7% 12"' | Out-File -encoding ASCII .\submenu1\ntp\ip-srv-ntp.txt"
 		plink -serial COM%pCOM% -sercfg %bRate%,%dBits%,%pArity%,%sBits% < ".\submenu1\ntp\ip-srv-ntp.txt"
 
@@ -324,13 +324,13 @@ rem subMENÚ [1] ---------------------------------------------------------------
 		
 		:SubMenuOpc1_8
 		cls
-		rem Cambiar Static Routing
-		ECHO Opción - 8 
+		rem Change Static Routing
+		ECHO Option - 8 
 		
-		set /P destino1_8=Escríbe la dirección IP de destino:
-		set /P subnet1_8=Escríbe la máscara de red:
-		set /P gateway1_8=Escríbe la dirección para el siguiente salto:
-		set /P distance1_8=Escríbe la distancia en unidad métrica (desde 1 a 256):
+		set /P destino1_8=Enter the destination IP address:
+		set /P subnet1_8=Type the netmask:
+		set /P gateway1_8=Type the address for the next hop:
+		set /P distance1_8=Type the distance in metric unit (from 1 to 256):
 		
 		powershell -Command "(gc .\submenu1\iproute\ip-route.txt) -replace '"route .*"', '"route %destino1_8% %subnet1_8% %gateway1_8% %distance1_8%"' | Out-File -encoding ASCII .\submenu1\iproute\ip-route.txt"
 		plink -serial COM%pCOM% -sercfg %bRate%,%dBits%,%pArity%,%sBits% < ".\submenu1\iproute\ip-route.txt"
@@ -341,10 +341,10 @@ rem subMENÚ [1] ---------------------------------------------------------------
 		
 		:SubMenuOpc1_9
 		cls
-		rem Para volver al menú principal.
-		ECHO ==============GRACIAS!===============
+		rem To return to the main menu.
+		ECHO ==============THANK YOU!===============
 		ECHO -------------------------------------
-		ECHO ======ESPERE A SER REEDIRIGIDO======
+		ECHO ======WAIT TO BE REDIRECTED======
 		timeout 0
 		goto MENU0
 
@@ -354,20 +354,20 @@ rem subMENÚ [2] ---------------------------------------------------------------
 		:subMenu2
 			
 		cls
-		ECHO. Configuración de VLANES - SUBMENÚ 2	
+		ECHO. VLANES Configuration - SUBMENU 2
 		ECHO.     
 		ECHO.     
-		ECHO.     1.- Crear/Editar VLAN.
-		ECHO.     2.- Agregar/Eliminar puertos a VLANes. 
-		ECHO.     3.- Dirección IP de una VLAN del SW.
-		ECHO.     4.- Cargar plantilla genérica de VLANES para el SW.
-		ECHO.     5.- Eliminar una VLAN.
-		ECHO.     6.- Configurar PVID de un puerto.
-		ECHO.     7.- Mostrar información de una VLAN. 
-		ECHO.     8.- Resumen de VLANes.
-		ECHO.     9/Q.- Escribe "Q" para volver.
+		ECHO.     1.- Create/Edit VLANs.
+		ECHO.     2.- Add/Remove Ports to VLANs.
+		ECHO.     3.- IP address of a SW VLAN.
+		ECHO.     4.- Load generic VLANES template for sw.
+		ECHO.     5.- Delete a VLAN.
+		ECHO.     6.- Configure single-port PVID.
+		ECHO.     7.- Display information from a VLAN. 
+		ECHO.     8.- Summary of VLANes.
+		ECHO.     9/Q.- Type "Q" to go back.
 		set SubMenuOpc2=""
-		set /P SubMenuOpc2=Su Opción es:
+		set /P SubMenuOpc2=Your Choice is:
 		
 		IF "%SubMenuOpc2%"    ==   ""  goto subMenu2
 		IF "%SubMenuOpc2%"    ==  "9"  goto SubMenuOpc2_9
@@ -383,96 +383,96 @@ rem subMENÚ [2] ---------------------------------------------------------------
 		IF "%SubMenuOpc2%"    ==  "1"  goto SubMenuOpc2_1
 		
 		cls
-		ECHO ============ENTRADA INCORRECTA============
+		ECHO ============INCORRECT ENTRY============
 		ECHO -------------------------------------
-		ECHO Por favor, elige un número del menú
-		ECHO Menu [1-8] o elige '9 o Q' para salir.
+		ECHO Please choose a number from the menu
+		ECHO Menu [1-8] or choose '9 or Q' to exit.
 		ECHO -------------------------------------
-		ECHO ======ESPERE A SER REEDIRIGIDO======		
+		ECHO ======WAIT TO BE REDIRECTED======		
 		timeout 4
 		goto subMenu2
 
 			:SubMenuOpc2_1
 			cls
-			rem Para crear o editar la VLAN y definirle un nombre.
-			ECHO Opción - 1
+			rem To create or edit the VLAN and define a name for it.
+			ECHO Option - 1
 
-			set /P elegir_vlan2_1=Escríbeme el número de la VLAN que quieres crear o editar:
+			set /P elegir_vlan2_1=Write me the number of the VLAN you want to create or edit:
 			powershell -Command "(gc .\submenu2\edit_vlan\edit_n_vlan.txt) -replace '"vlan .*"', '"vlan %elegir_vlan2_1%"' | Out-File -encoding ASCII .\submenu2\edit_vlan\edit_n_vlan.txt"
-			set /P elegir_n2_1=Escríbeme el nombre que quieres darle a la VLAN %elegir_vlan1_2%:
+			set /P elegir_n2_1=Write me the name you want to give the VLAN %elegir_vlan1_2%:
 			powershell -Command "(gc .\submenu2\edit_vlan\edit_n_vlan.txt) -replace '"name .*"', '"name %elegir_n2_1%"' | Out-File -encoding ASCII .\submenu2\edit_vlan\edit_n_vlan.txt"
-			echo Editarás/Crearás la VLAN %elegir_vlan2_1% y le darás el nombre de %elegir_n2_1%.
+			echo Edit/Create the VLAN %elegir_vlan2_1% y le darás el nombre de %elegir_n2_1%.
 			plink -serial COM%pCOM% -sercfg %bRate%,%dBits%,%pArity%,%sBits% < ".\submenu2\edit_vlan\edit_n_vlan.txt"
 			timeout 3
 			goto subMenu2
 			
 			:SubMenuOpc2_2
 			cls
-			rem Agregar un puerto o eliminarlo de una VLAN.
-			ECHO Opción - 2
+			rem Add a port or remove it from a VLAN.
+			ECHO Option - 2
 			set elegir_opc_2_2=""
-			set /P elegir_opc_2_2=Escribe '1' para definir VLANes en un puerto o '2' para eliminar/quitar VLANes de un puerto:
+			set /P elegir_opc_2_2=Type '1' to define VLANs on a port or '2' to remove VLANs from a port:
 			IF "%elegir_opc_2_2%"== "1" (goto Opc_ElegirV_add_2_2)
 			IF "%elegir_opc_2_2%"== "2" (goto Opc_ElegirV_delete_2_2)
 			IF "%elegir_opc_2_2%x"== "x" (goto SubMenuOpc2_2)
 			
 			
 			cls
-			ECHO ============ENTRADA INCORRECTA============
+			ECHO ============INCORRECT ENTRY============
 			ECHO -------------------------------------
-			ECHO Por favor, escribe  correctamente
+			ECHO Please type correctly...
 			ECHO -------------------------------------
-			ECHO ======ESPERE A SER REEDIRIGIDO======
+			ECHO ======WAIT TO BE REDIRECTED======
 			timeout 3
 			goto subMenu2
 			
 				:Opc_ElegirV_add_2_2
 				cls
 				set elegir_V_2_2=""
-				set /P elegir_V_2_2=Escribe '1' si es la version del SW v1.0 o escribe '2' si la version del SW es v2.0
+				set /P elegir_V_2_2=type '1' if it is the sw v1.0 version or type '2' if the sw version is v2.0
 				IF "%elegir_V_2_2%"== "1" (goto Opc_2_2_add_1_v1-new)
 				IF "%elegir_V_2_2%"== "2" (goto Opc_2_2_add_1_v2-new)
 				IF "%elegir_V_2_2%x"== "x"  (goto Opc_ElegirV_add_2_2)
 				
 				cls
-				ECHO ============ENTRADA INCORRECTA============
+				ECHO ============INCORRECT ENTRY============
 				ECHO -------------------------------------
-				ECHO Por favor, escribe  correctamente...
+				ECHO Please type correctly...
 				ECHO -------------------------------------
-				ECHO ======ESPERE A SER REEDIRIGIDO======				
+				ECHO ======WAIT TO BE REDIRECTED======				
 				timeout 3
 				goto subMenu2
 				
 				:Opc_ElegirV_delete_2_2
 				cls
 				set elegir_V_2_2-sup=""
-				set /P elegir_V_2_2-sup=Escribe '1' si es la version del SW v1.0 o escribe '2' si la version del SW es v2.0:
-				rem Como no puedo probar esto con un SW v1.0 voy a utilizar el mismo comando para ambas versiones a ver si funciona correctamente.
+				set /P elegir_V_2_2-sup=Type '1' if it is the sw v1.0 version or type '2' if the SW version is v2.0:
+				rem As I can't test this with a SW v1.0 I'm going to use the same command for both versions to see if it works properly.
 				IF "%elegir_V_2_2-sup%"== "1" (goto Opc_2_2_sup_2_v1)
 				IF "%elegir_V_2_2-sup%"== "2" (goto Opc_2_2_sup_2)
 				IF "%elegir_V_2_2-sup%x"== "x"  (goto Opc_ElegirV_delete_2_2)
 				
 				cls
-				ECHO ============ENTRADA INCORRECTA============
+				ECHO ============INCORRECT ENTRY============
 				ECHO -------------------------------------
-				ECHO Por favor, escribe  correctamente...
+				ECHO Please type correctly...
 				ECHO -------------------------------------
-				ECHO ======ESPERE A SER REEDIRIGIDO======				
+				ECHO ======WAIT TO BE REDIRECTED======				
 				timeout 3
 				goto subMenu2
 				
 				
 				
 				:Opc_2_2_add_1_v1-new
-				rem Si existe el archivo, borrar
+				rem If the file exists, delete
 				IF EXIST .\submenu2\port\2_NEW_add_port_to_vlan.txt DEL .\submenu2\port\2_NEW_add_port_to_vlan.txt
-				rem Si no existe el archivo, crearlo 
+				rem If the file does not exist, create it
 				IF NOT EXIST TYPE nul > .\submenu2\port\2_NEW_add_port_to_vlan.txt
-				echo Código para agregar VLANES a determinados puertos.
+				echo Code to add VLANES to certain ports.
 				
-				set /P elegir_puerto2_2=Escríbe desde que puerto quieres emprezar:
-				set /P elegir_puerto2_2-2=Escríbe desde que puerto quieres terminar:
-				set /P elegir_vlan2_2=Escríbeme el o los números de las VLANES a las que quieras que pertenezca a los puertos %elegir_puerto2_2% al %elegir_puerto2_2-2%, (p.e: 2,4-6):
+				set /P elegir_puerto2_2=Write from which port you want to start:
+				set /P elegir_puerto2_2-2=Write from which port you want to finish:
+				set /P elegir_vlan2_2=Write me the number(s) of the VLANES to which you want it to belong to the ports %elegir_puerto2_2% to the %elegir_puerto2_2-2%, (p.e: 2,4-6):
 
 				echo ! >> .\submenu2\port\2_NEW_add_port_to_vlan.txt
 				echo enable >> .\submenu2\port\2_NEW_add_port_to_vlan.txt
@@ -488,17 +488,17 @@ rem subMENÚ [2] ---------------------------------------------------------------
 				echo exit >> .\submenu2\port\2_NEW_add_port_to_vlan.txt
 				echo exit >> .\submenu2\port\2_NEW_add_port_to_vlan.txt
 					
-				set /P elegir_modo2_2=Indícame en con el 1,2 o 3 con qué modo quieres que funcionen los puertos del %elegir_puerto2_2% al %elegir_puerto2_2-2% , access[1], trunk[2] o general[3]:
+				set /P elegir_modo2_2=Tell me in with the 1,2 or 3 with which mode you want the ports of the %elegir_puerto2_2% to the %elegir_puerto2_2-2% , access[1], trunk[2] o general[3]:
 				IF "%elegir_modo2_2%"== "1" (goto vlan-cong_2_2_acces)
 				IF "%elegir_modo2_2%"== "2" (goto vlan-cong_2_2_trunk)
 				IF "%elegir_modo2_2%"== "3" (goto vlan-cong_2_2_general)
 				
 				cls
-				ECHO ============ENTRADA INCORRECTA============
+				ECHO ============INCORRECT ENTRY============
 				ECHO -------------------------------------
-				ECHO Por favor, escribe  correctamente...
+				ECHO Please type correctly...
 				ECHO -------------------------------------
-				ECHO ======ESPERE A SER REEDIRIGIDO======				
+				ECHO ======WAIT TO BE REDIRECTED======				
 				timeout 3
 				goto Opc_2_2_add_1_v1
 				
@@ -517,17 +517,17 @@ rem subMENÚ [2] ---------------------------------------------------------------
 				
 				:verificar_tagg_2_2
 				set verificar2_2=""
-				set /P verificar2_2=[1m Escribe "1" para que taggear el puerto,"2" para que dejarlo como untagged: [0m
+				set /P verificar2_2=[1m Type "1" to tag the port,"2" to leave it as an untagged: [0m
 				IF "%verificar2_2%"== "1" (goto Si_2_2)
 				IF "%verificar2_2%"== "2" (goto No_2_2)
 				IF "%verificar2_2%x"== "x"  (goto Opc_2_2_add_1_v1-new)
 				
 				cls
-				ECHO ============ENTRADA INCORRECTA============
+				ECHO ============INCORRECT ENTRY============
 				ECHO -------------------------------------
-				ECHO Por favor, escribe  correctamente...
+				ECHO Please type correctly...
 				ECHO -------------------------------------
-				ECHO ======ESPERE A SER REEDIRIGIDO======				
+				ECHO ======WAIT TO BE REDIRECTED======				
 				timeout 3
 				goto verificar_tagg_2_2
 				
@@ -550,26 +550,26 @@ rem subMENÚ [2] ---------------------------------------------------------------
 				
 
 				cls
-				ECHO ============ENTRADA INCORRECTA============
+				ECHO ============INCORRECT ENTRY============
 				ECHO -------------------------------------
-				ECHO Por favor, escribe  correctamente...
+				ECHO Please type correctly...
 				ECHO -------------------------------------
-				ECHO ======ESPERE A SER REEDIRIGIDO======				
+				ECHO ======WAIT TO BE REDIRECTED======				
 				timeout 3
 				goto subMenu2
 
-rem -------------------------------------CAMBIO_DE_VERSIÓN-------------------
+rem -------------------------------------VERSION_CHANGE-------------------
 
 				:Opc_2_2_add_1_v2-new
-				rem Si existe el archivo, borrar
+				rem If the file exists, delete
 				IF EXIST .\submenu2\port\2_NEW_add_port_to_vlan.txt DEL .\submenu2\port\2_NEW_add_port_to_vlan.txt
-				rem Si no existe el archivo, crearlo 
+				rem If the file does not exist, create it 
 				IF NOT EXIST TYPE nul > .\submenu2\port\2_NEW_add_port_to_vlan.txt
-				echo Código para agregar VLANES a determinados puertos.
+				echo Code to add VLANES to certain ports.
 				
-				set /P elegir_puerto2_2=Escríbe desde que puerto quieres emprezar:
-				set /P elegir_puerto2_2-2=Escríbe desde que puerto quieres terminar:
-				set /P elegir_vlan2_2=Escríbeme el o los números de las VLANES a las que quieras que pertenezca a los puertos %elegir_puerto2_2% al %elegir_puerto2_2-2%, (p.e: 2,4-6):
+				set /P elegir_puerto2_2=Write from which port you want to start:
+				set /P elegir_puerto2_2-2=Write from which port you want to finish:
+				set /P elegir_vlan2_2=Write me the number(s) of the VLANES to which you want it to belong to the ports %elegir_puerto2_2% to the %elegir_puerto2_2-2%, (p.e: 2,4-6):
 
 				echo ! >> .\submenu2\port\2_NEW_add_port_to_vlan.txt
 				echo enable >> .\submenu2\port\2_NEW_add_port_to_vlan.txt
@@ -588,17 +588,17 @@ rem -------------------------------------CAMBIO_DE_VERSIÓN-------------------
 					
 				:verificar_tagg_2_2
 				set verificar2_2=""
-				set /P verificar2_2=[1m Escribe "1" para que taggear el puerto,"2" para que dejarlo como untagged: [0m
+				set /P verificar2_2=[1m Type "1" to tag the port,"2" to leave it as an untagged: [0m
 				IF "%verificar2_2%"== "1" (goto Si_2_2)
 				IF "%verificar2_2%"== "2" (goto No_2_2)
 				IF "%verificar2_2%x"== "x"  (goto Opc_2_2_add_1_v2-new)
 				
 				cls
-				ECHO ============ENTRADA INCORRECTA============
+				ECHO ============INCORRECT ENTRY============
 				ECHO -------------------------------------
-				ECHO Por favor, escribe  correctamente...
+				ECHO Please type correctly...
 				ECHO -------------------------------------
-				ECHO ======ESPERE A SER REEDIRIGIDO======				
+				ECHO ======WAIT TO BE REDIRECTED======				
 				timeout 3
 				goto verificar_tagg_2_2
 				
@@ -621,25 +621,25 @@ rem -------------------------------------CAMBIO_DE_VERSIÓN-------------------
 				
 				
 				cls
-				ECHO ============ENTRADA INCORRECTA============
+				ECHO ============INCORRECT ENTRY============
 				ECHO -------------------------------------
-				ECHO Por favor, escribe  correctamente...
+				ECHO Please type correctly...
 				ECHO -------------------------------------
-				ECHO ======ESPERE A SER REEDIRIGIDO======				
+				ECHO ======WAIT TO BE REDIRECTED======				
 				timeout 3
 				goto subMenu2
 
 				
 				:Opc_2_2_sup_2
 				cls
-				rem Para eliminar puertos de una VLAN.
+				rem To delete ports from a VLAN.
 				IF EXIST .\submenu2\port\sup_port_to_vlan.txt DEL .\submenu2\port\sup_port_to_vlan.txt
-				rem Si no existe el archivo, crearlo 
+				rem If the file does not exist, create it 
 				IF NOT EXIST TYPE nul > .\submenu2\port\sup_port_to_vlan.txt
 				
-				set /P elegir_puerto2_2_sup=Escríbeme el número del puerto desde el que quieres empezar:
-				set /P elegir_puerto2_2_sup-2=Escríbeme el número del puerto desde el que quieres terminar:
-				set /P elegir_vlan2_2_sup=Escríbeme el o los números de las VLANES a las que quieras que se eliminen del puerto %elegir_puerto2_2_sup% al %elegir_puerto2_2_sup-2% , (p.e: 2,4-6):
+				set /P elegir_puerto2_2_sup=Write me the number of the port you want to start from:
+				set /P elegir_puerto2_2_sup-2=Write me the number of the port from which you want to terminate:
+				set /P elegir_vlan2_2_sup=Write me the number(s) of the VLANES you want removed from the port %elegir_puerto2_2_sup% to the %elegir_puerto2_2_sup-2% , (p.e: 2,4-6):
 				
 				
 				echo ! >> .\submenu2\port\sup_port_to_vlan.txt
@@ -662,16 +662,16 @@ rem -------------------------------------CAMBIO_DE_VERSIÓN-------------------
 				goto subMenu2
 				
 				:Opc_2_2_sup_2_v1
-				rem Lo que no estoy seguro es si esto funcionaría con la versión v1.0 de un SW tp-link, habría que probarlo...
+				rem What I'm not sure is if this would work with version v1.0 of a SW tp-link, we would have to try it...
 				cls
-				rem Para eliminar puertos de una VLAN.
+				rem To delete ports from a VLAN.
 				IF EXIST .\submenu2\port\sup_port_to_vlan.txt DEL .\submenu2\port\sup_port_to_vlan.txt
-				rem Si no existe el archivo, crearlo 
+				rem If the file does not exist, create it
 				IF NOT EXIST TYPE nul > .\submenu2\port\sup_port_to_vlan.txt
 				
-				set /P elegir_puerto2_2_sup=Escríbeme el número del puerto desde el que quieres empezar:
-				set /P elegir_puerto2_2_sup-2=Escríbeme el número del puerto desde el que quieres terminar:
-				set /P elegir_vlan2_2_sup=Escríbeme el o los números de las VLANES a las que quieras que se eliminen del puerto %elegir_puerto2_2_sup% al %elegir_puerto2_2_sup-2% , (p.e: 2,4-6):
+				set /P elegir_puerto2_2_sup=Write me the number of the port you want to start from:
+				set /P elegir_puerto2_2_sup-2=Write me the number of the port from which you want to terminate:
+				set /P elegir_vlan2_2_sup=Write me the number(s) of the VLANES you want removed from the port %elegir_puerto2_2_sup% to the %elegir_puerto2_2_sup-2% , (p.e: 2,4-6):
 				
 				
 				echo ! >> .\submenu2\port\sup_port_to_vlan.txt
@@ -697,31 +697,31 @@ rem -------------------------------------CAMBIO_DE_VERSIÓN-------------------
 				
 			:SubMenuOpc2_3
 			cls
-			ECHO Opción - 3 (Cambiar interfaz de red de una VLAN)
-			rem Para cambiar la dirección IP de la interfaz de red de una VLAN.
+			ECHO Option - 3 (Change the network interface of a VLAN)
+			rem To change the IP address of the network interface of a VLAN.
 
-			set /P elegir_vlan2_3=Escríbeme la VLAN de la cual quieres modificar la dirección IP:
-			rem Para guardar el valor de un número en una variable
+			set /P elegir_vlan2_3=Write me the VLAN of which you want to modify the IP address:
+			rem To save the value of a number to a variable
 			powershell -Command "(gc .\submenu2\dir_IP\dirIP.txt) -replace '"interface vlan .*"', '"interface vlan %elegir_vlan2_3%"' | Out-File -encoding ASCII .\submenu2\dir_IP\dirIP.txt"
-			rem Con el valor de la variable y utilizando PowerShell se remplaza el valor en un archivo '.txt' que luego se pasará el SW por Serial.
-			set /P elegir_ip2_3=Escríbeme la dirección IP que quieres  a la VLAN %elegir_vlan2_3%:
-			rem Toma el valor de la dirección IP que ingreses y lo guarda en la variable 'elegir_ip2_3'
-			set /P elegir_mascara2_3=Escríbeme la máscara de red que quieres darle a la VLAN %elegir_vlan2_3%:
-			rem Toma el valor de la máscare de red que ingreses y lo guarda en la variable 'elegir_ip2_3'
+			rem With the value of the variable and using PowerShell, the value is replaced in a '.txt' file that will then be passed the SW through Serial.
+			set /P elegir_ip2_3=Write me the IP address you want to the VLAN %elegir_vlan2_3%:
+			rem It takes the value of the IP address you enter and saves it in the variable 'elegir_ip2_3'
+			set /P elegir_mascara2_3=Write me the netmask you want to give the VLAN %elegir_vlan2_3%:
+			rem It takes the value of the network mask you enter and saves it in the variable 'elegir_ip2_3'
 			powershell -Command "(gc .\submenu2\dir_IP\dirIP.txt) -replace '"ip address .*"', '"ip address %elegir_ip2_3% %elegir_mascara2_3%"' | Out-File -encoding ASCII .\submenu2\dir_IP\dirIP.txt"
-			set /P elegir_nombre2_3=Escríbeme el nombre que quieres darle a la VLAN %elegir_vlan2_3%:
+			set /P elegir_nombre2_3=Write me the name you want to give the VLAN %elegir_vlan2_3%:
 			powershell -Command "(gc .\submenu2\dir_IP\dirIP.txt) -replace '"description .*"', '"description %elegir_nombre2_3%"' | Out-File -encoding ASCII .\submenu2\dir_IP\dirIP.txt"
 			
 			plink -serial COM%pCOM% -sercfg %bRate%,%dBits%,%pArity%,%sBits% < ".\submenu2\dir_IP\dirIP.txt"
-			echo La configuración ha sido %elegir_ip2_3% con %elegir_mascara2_3% y %elegir_nombre2_3% para la VLAN %elegir_vlan2_3%
+			echo The configuration has been %elegir_ip2_3% with %elegir_mascara2_3% and %elegir_nombre2_3% to the  VLAN %elegir_vlan2_3%
 			timeout 3
 			goto subMenu1
 				
 
 			:SubMenuOpc2_4
-			rem Cargar una configuración genérica de VLANes.
+			rem Load a generic VLAN configuration.
 			cls
-			ECHO Opción - 
+			ECHO Option - 4
 			
 			plink -serial COM%pCOM% -sercfg %bRate%,%dBits%,%pArity%,%sBits% < ".\submenu2\generic_vlanes\script_vlan.txt"
 			
@@ -729,11 +729,11 @@ rem -------------------------------------CAMBIO_DE_VERSIÓN-------------------
 			goto subMenu2
 			
 			:SubMenuOpc2_5
-			rem Para eliminar una VLAN.
+			rem To delete a VLAN.
 			cls
-			ECHO Opción - 5
+			ECHO Option - 5
 			
-			set /P elegir_vlan2_5=Escríbeme el número de la VLAN que quieres eliminar:
+			set /P elegir_vlan2_5=Write me the number of the VLAN you want to delete:
 			powershell -Command "(gc .\submenu2\edit_vlan\sup_edit_n_vlan.txt) -replace '"vlan .*"', '"vlan %elegir_vlan2_5%"' | Out-File -encoding ASCII .\submenu2\edit_vlan\sup_edit_n_vlan.txt"
 			plink -serial COM%pCOM% -sercfg %bRate%,%dBits%,%pArity%,%sBits% < ".\submenu2\edit_vlan\sup_edit_n_vlan.txt"
 
@@ -742,16 +742,16 @@ rem -------------------------------------CAMBIO_DE_VERSIÓN-------------------
 			goto subMenu2
 			
 			:SubMenuOpc2_6
-			rem Connfigurar la PVID de un puerto.
+			rem Connfigure the PVID of a port.
 			cls
-			ECHO Opción - 6 (Cambiar PVID de un puerto)
+			ECHO Option - 6 (Change PVID from a port)
 			
-			set /P elegir_port_2_6=Escribe el puerto desde dónde deseas empezar:
-			set /P elegir_port_2_6_2=Escribe el puerto desde dónde deseas terminar:
-			set /P elegir_pvid_2_6=Escribe el PVID para el puerto %elegir_port_2_6% hasta el %elegir_port_2_6_2%:
+			set /P elegir_port_2_6=Enter the port from where you want to start:
+			set /P elegir_port_2_6_2=Type the port from where you want to end:
+			set /P elegir_pvid_2_6=Type the port from where you want to end: %elegir_port_2_6% up to %elegir_port_2_6_2%:
 			
 				IF EXIST .\submenu2\port\change_pvid_port.txt DEL .\submenu2\port\change_pvid_port.txt
-				rem Si no existe el archivo, crearlo 
+				rem If the file does not exist, create it
 				IF NOT EXIST TYPE nul > .\submenu2\port\change_pvid_port.txt
 				
 				echo ! >> .\submenu2\port\change_pvid_port.txt
@@ -775,11 +775,11 @@ rem -------------------------------------CAMBIO_DE_VERSIÓN-------------------
 			
 			
 			:SubMenuOpc2_7
-			rem Mostrar la información de una VLAN.
+			rem Display the information for a VLAN.
 			cls
-			ECHO Opción - 7 (Mostrar información de una VLAN)
+			ECHO Opción - 7 (Display information from a VLAN)
 			set vlan_id_2_7=""
-			set /P vlan_id_2_7=Escríbe la ID de la VLAN o 'T' para mostrar todas:
+			set /P vlan_id_2_7=Type the VLAN ID or 'T' to display all:
 			
 			IF "%vlan_id_2_7%"== "t" (goto vlanTodo2_7)
 			IF "%vlan_id_2_7%"== "T" (goto vlanTodo2_7)
@@ -789,7 +789,7 @@ rem -------------------------------------CAMBIO_DE_VERSIÓN-------------------
 			ECHO ==============NOP!===============
 			ECHO -------------------------------------
 			ECHO -------------------------------------
-			ECHO ======ESCRIBE ALGO, PORFAVOR======
+			ECHO ======WRITE CORRECTLY, PLEASE======
 			timeout 3
 			goto subMenu2
 			
@@ -805,9 +805,9 @@ rem -------------------------------------CAMBIO_DE_VERSIÓN-------------------
 				goto subMenu2
 			
 			:SubMenuOpc2_8
-			rem Resumen de VLANes
+			rem VLANES Overview
 			cls
-			ECHO Opción - 8 (Resumen de VLANES)
+			ECHO Option - 8 (VLANES Overview)
 			plink -serial COM%pCOM% -sercfg %bRate%,%dBits%,%pArity%,%sBits% < ".\submenu2\vlanes\summary\summary.txt"
 			
 			
@@ -817,12 +817,12 @@ rem -------------------------------------CAMBIO_DE_VERSIÓN-------------------
 			goto subMenu2
 			
 			:SubMenuOpc2_9
-			rem Volver al menú principal, desde donde estás, que es el submenú 2.
+			rem Go back to the main menu, from where you are, which is submenu 2.
 			cls
-			ECHO ==============GRACIAS!===============
+			ECHO ==============THANK YOU!===============
 			ECHO -------------------------------------
 			ECHO -------------------------------------
-			ECHO ======ESPERE A SER REEDIRIGIDO======
+			ECHO ======WAIT TO BE REDIRECTED======
 			timeout 0
 			goto MENU0		
 		
@@ -840,17 +840,17 @@ rem subMENÚ [4] ---------------------------------------------------------------
 		:subMenu4
 			
 		cls
-		ECHO. Modificar puertos - SUBMENÚ 4.	
+		ECHO. Modify ports - SUBMENU 4.	
 		ECHO.     
 		ECHO.     
-		ECHO.     1.- Activar o Desactivar Spanning Tree.
-		ECHO.     2.- Activar o Desactivar LoopBack Detection.
-		ECHO.     3.- Activar o Descativar SSH.
+		ECHO.     1.- Enable or Disable Spanning Tree.
+		ECHO.     2.- Enable or Disable LoopBack Detection.
+		ECHO.     3.- Activate or Descativar SSH.
 		ECHO.     4.- ---------------------------------------------------------
 		ECHO.     5.- ---------------------------------------------------------
-		ECHO.     6/Q.- Escribe "Q" para volver.
+		ECHO.     6/Q.- Type "Q" to go back.
 		set SubMenuOpc4=""
-		set /P SubMenuOpc4=Su Opción es:
+		set /P SubMenuOpc4=Your Choice is:
 		
 		IF "%SubMenuOpc4%x"   ==  "x"  goto subMenu4
 		IF "%SubMenuOpc4%"    ==  "6"  goto SubMenuOpc4_6
@@ -863,20 +863,20 @@ rem subMENÚ [4] ---------------------------------------------------------------
 		IF "%SubMenuOpc4%"    ==  "1"  goto SubMenuOpc4_1
 		
 		cls
-		ECHO ============ENTRADA INCORRECTA============
+		ECHO ============INCORRECT ENTRY============
 		ECHO -------------------------------------
-		ECHO Por favor, elige un número del menú
-		ECHO Menu [1-5] o elige '6 o Q' para salir.
+		ECHO Please choose a number from the menu
+		ECHO Menu [1-5] or choose '6 or Q' to exit.
 		ECHO -------------------------------------
-		ECHO ======ESPERE A SER REEDIRIGIDO======	
+		ECHO ======WAIT TO BE REDIRECTED======	
 		timeout 4
 		goto MENU0
 
 		:SubMenuOpc4_1
 		cls
-		ECHO Opción - 1 (Activar o Desactivar Spanning Tree)
+		ECHO Option - 1 (Enable or Disable Spanning Tree)
 		set elegir4_1=""
-		set /P elegir4_1=Escribe "1" para activar Spanning Tree, "2" para desactivarlo o  "Q" para volver al menú anterior:
+		set /P elegir4_1=Type "1" to activate Spanning Tree, "2" to deactivate it or "Q" to return to the previous menu:
 		IF "%elegir4_1%"=="1" (goto activar4_1)
 		IF "%elegir4_1%"=="2" (goto desactivar4_1)
 		IF "%elegir4_1%"=="1" (goto activar4_1)
@@ -886,10 +886,10 @@ rem subMENÚ [4] ---------------------------------------------------------------
 		IF "%elegir4_1%x"=="x" (goto SubMenuOpc4_1)
 		
 		cls
-		ECHO ============ENTRADA INCORRECTA============
-		ECHO Por favor, escribe '1' , '2' o 'Q'
+		ECHO ============INCORRECT ENTRY============
+		ECHO Please type '1', '2' or 'Q'
 		ECHO -------------------------------------
-		ECHO ======ESPERE A SER REEDIRIGIDO======
+		ECHO ======WAIT TO BE REDIRECTED======
 		timeout 3
 		goto subMenu4
 		
@@ -905,9 +905,9 @@ rem subMENÚ [4] ---------------------------------------------------------------
 			
 		:SubMenuOpc4_2
 		cls
-		ECHO Opción - 2 (Activar o Desactivar LoopBack Detection)
+		ECHO Option - 2 (Enable or Disable LoopBack Detection)
 		set elegir4_2=""
-		set /P elegir4_2=Escribe "1" para activar LoopBack-Detection, "2" para desactivarlo o  "Q" para volver al menú anterior:
+		set /P elegir4_2=Type "1" to enable LoopBack-Detection, "2" to disable it, or "Q" to return to the previous menu:
 		IF "%elegir4_2%"=="1" (goto activar4_2)
 		IF "%elegir4_2%"=="N2 (goto desactivar4_2)
 		IF "%elegir4_2%"=="1" (goto activar4_2)
@@ -917,10 +917,10 @@ rem subMENÚ [4] ---------------------------------------------------------------
 		IF "%elegir4_2%x"=="x"  (goto SubMenuOpc4_2)
 			
 		cls
-		ECHO ============ENTRADA INCORRECTA============
-		ECHO Por favor, escribe '1' , '2 o 'Q'
+		ECHO ============INCORRECT ENTRY============
+		ECHO Please type '1', '2' or 'Q'
 		ECHO -------------------------------------
-		ECHO ======ESPERE A SER REEDIRIGIDO======
+		ECHO ======WAIT TO BE REDIRECTED======
 		timeout 3
 		goto subMenu4
 			:activar4_2
@@ -934,9 +934,9 @@ rem subMENÚ [4] ---------------------------------------------------------------
 
 		:SubMenuOpc4_3
 		cls
-		ECHO Opción - 3 (Activar o Descativar SSH)
+		ECHO Option - 3 (Enable or Descativar SSH)
 		set verificar4_3=""
-		set /P verificar4_3=Indícame con un '1' si quieres activar SSH para el SW o '2' si quieres desactivarlo:
+		set /P verificar4_3=Tell me with a '1' if you want to enable SSH for sw or '2' if you want to disable it:
 		IF "%verificar4_3%"=="1" (goto activar4_3)
 		IF "%verificar4_3%"=="2" (goto desactivar4_3)
 		IF "%verificar4_3%x"=="x" (goto SubMenuOpc4_3)
@@ -952,10 +952,10 @@ rem subMENÚ [4] ---------------------------------------------------------------
 			goto subMenu4
 		
 		cls
-		ECHO ============ENTRADA INCORRECTA============
-		ECHO Por favor, escribe '1' , '2'
+		ECHO ============INCORRECT ENTRY============
+		ECHO Please type '1', '2'
 		ECHO -------------------------------------
-		ECHO ======ESPERE A SER REEDIRIGIDO======
+		ECHO ======WAIT TO BE REDIRECTED======
 		timeout 3
 		goto subMenu4
 		
@@ -983,9 +983,9 @@ rem subMENÚ [4] ---------------------------------------------------------------
 		
 		:SubMenuOpc4_6
 		cls
-		ECHO ==============GRACIAS!===============
+		ECHO ==============THANK YOU!===============
 		ECHO -------------------------------------
-		ECHO ======ESPERE A SER REEDIRIGIDO======
+		ECHO ======WAIT TO BE REDIRECTED======
 
 		timeout 0
 		goto MENU0	
@@ -997,17 +997,17 @@ rem subMENÚ [5] ---------------------------------------------------------------
 		rem Submenú 5
 			
 		cls
-		ECHO. Modificar puertos - SUBMENÚ 5.	
+		ECHO. Modify Ports - SUBMENU 5.	
 		ECHO.     
 		ECHO.     
-		ECHO.     1.- Elegir puertos para Activat/Desactivar LoopBack.
-		ECHO.     2.- Elegir tamaño de la trama JUMBO.
+		ECHO.     1.- Choose ports to Enable/Disable LoopBack.
+		ECHO.     2.- Choose JUMBO frame size.
 		ECHO.     3.- ---------------------------------------------------------
 		ECHO.     4.- ---------------------------------------------------------
 		ECHO.     5.- ---------------------------------------------------------
-		ECHO.     6/Q.- Escribe "Q" para volver.
+		ECHO.     6/Q.- Type "Q" to go back.
 		set SubMenuOpc5=""
-		set /P SubMenuOpc5=Su Opción es:
+		set /P SubMenuOpc5=Your Choice is:
 		
 		IF "%SubMenuOpc5%x"    ==  "x"   goto subMenu5
 		IF "%SubMenuOpc5%"    ==  "6"  goto SubMenuOpc5_6
@@ -1020,22 +1020,22 @@ rem subMENÚ [5] ---------------------------------------------------------------
 		IF "%SubMenuOpc5%"    ==  "1"  goto SubMenuOpc5_1
 		
 		cls
-		ECHO ============ENTRADA INCORRECTA============
+		ECHO ============INCORRECT ENTRY============
 		ECHO -------------------------------------
-		ECHO Por favor, elige un número del menú
-		ECHO Menu [1-5] o elige '6 o Q' para salir.
+		ECHO Please choose a number from the menu
+		ECHO Menu [1-5] or choose '6 or Q' to exit.
 		ECHO -------------------------------------
-		ECHO ======ESPERE A SER REEDIRIGIDO======	
+		ECHO ======WAIT TO BE REDIRECTED======	
 		timeout 4
 		goto MENU0
 
 			:SubMenuOpc5_1
 			cls
-			ECHO Opción - 1 (Activar o Desactivar LoopBack en los puertos)
+			ECHO Option - 1 (Enable or Disable LoopBack on ports)
 			set verificar5_1=""
-			set /P numPuerto5_1=Escríbeme el puerto desde donde quieres empezar:
-			set /P numPuerto5_1_2=Escríbeme el puerto donde quieres terminar:
-			set /P verificar5_1=Elige 1 para activar o 2 para desactivarlo en los puertos del %numPuerto5_1% hasta el %numPuerto5_1_2%:
+			set /P numPuerto5_1=Write me the port from where you want to start:
+			set /P numPuerto5_1_2=Write me the port where you want to end:
+			set /P verificar5_1=Choose 1 to enable or 2 to disable on the ports of the %numPuerto5_1% up to %numPuerto5_1_2%:
 			
 			IF "%verificar5_1%"=="2" (goto desactivar5_1)
 			IF "%verificar5_1%"=="1" (goto continuar5_1)
@@ -1044,16 +1044,16 @@ rem subMENÚ [5] ---------------------------------------------------------------
 			IF "%verificar5_1%x"=="x"  (goto SubMenuOpc5_1)
 			
 			cls
-			ECHO ============ENTRADA INCORRECTA============
-			ECHO Por favor, escribe '1' o '2'
+			ECHO ============INCORRECT ENTRY============
+			ECHO Please type '1' or '2'
 			ECHO -------------------------------------
-			ECHO ======ESPERE A SER REEDIRIGIDO======	
+			ECHO ======WAIT TO BE REDIRECTED======	
 			timeout 3
 			goto subMenu5
 			
 				:continuar5_1
 					IF EXIST .\submenu5\LoopBack\Puertos\on.txt DEL .\submenu5\LoopBack\Puertos\on.txt
-					rem Si existe el archivo, se elimina, si no existe se crea un archivo txt en blanco.
+					rem If the file exists, it is deleted, if it does not exist a blank txt file is created.
 					IF NOT EXIST TYPE nul > .\submenu5\LoopBack\Puertos\on.txt
 				
 					echo ! >> .\submenu5\LoopBack\Puertos\on.txt
@@ -1076,7 +1076,7 @@ rem subMENÚ [5] ---------------------------------------------------------------
 					
 				:desactivar5_1
 					IF EXIST .\submenu5\LoopBack\Puertos\off.txt DEL .\submenu5\LoopBack\Puertos\off.txt
-					rem Si existe el archivo, se elimina, si no existe se crea un archivo txt en blanco.
+					rem If the file exists, it is deleted, if it does not exist a blank txt file is created.
 					IF NOT EXIST TYPE nul > .\submenu5\LoopBack\Puertos\off.txt
 				
 					echo ! >> .\submenu5\LoopBack\Puertos\off.txt
@@ -1098,11 +1098,11 @@ rem subMENÚ [5] ---------------------------------------------------------------
 			
 			:SubMenuOpc5_2
 			cls
-			ECHO Opción - 2 (Cambiar tamaño trama JUMBO)
+			ECHO Option - 2 (Resize JUMBO frame)
 			
-			set /P jumbo5_2=Dime el tamaño de la trama jumbo (de 1518 to 9216 bytes):
+			set /P jumbo5_2=Tell me the size of the jumbo plot (from 1518 to 9216 bytes):
 			IF EXIST .\submenu5\jumbo\jumbo.txt DEL .\submenu5\jumbo\jumbo.txt
-			rem Si no existe el archivo, crearlo 
+			rem If the file does not exist, create it
 			IF NOT EXIST TYPE nul > .\submenu5\jumbo\jumbo.txt
 			
 			echo ! >> .\submenu5\jumbo\jumbo.txt
@@ -1121,9 +1121,9 @@ rem subMENÚ [5] ---------------------------------------------------------------
 
 			:SubMenuOpc5_3
 			cls
-			ECHO Opción - 3
+			ECHO Option - 3
 			
-			rem Ampliación Futura
+			rem For future.
 			
 			timeout 3
 			goto subMenu5
@@ -1133,7 +1133,7 @@ rem subMENÚ [5] ---------------------------------------------------------------
 			ECHO Opción - 4
 			
 			
-			rem Ampliación Futura
+			rem For future.
 			
 			
 			timeout 3
@@ -1142,7 +1142,7 @@ rem subMENÚ [5] ---------------------------------------------------------------
 			:SubMenuOpc5_5
 			cls
 			ECHO Opción - 5
-			rem Ampliación Futura
+			rem For future.
 			
 			
 			
@@ -1152,10 +1152,10 @@ rem subMENÚ [5] ---------------------------------------------------------------
 		
 			:SubMenuOpc5_6
 			cls
-			ECHO ==============GRACIAS!===============
+			ECHO ==============THANKS!===============
 			ECHO -------------------------------------
 			ECHO -------------------------------------
-			ECHO ======ESPERE A SER REEDIRIGIDO======
+			ECHO ======WAIT TO BE REDIRECTED======
 			timeout 0
 			goto MENU0			
 
@@ -1163,36 +1163,36 @@ rem subMENÚ [5] ---------------------------------------------------------------
 	IF EXIST .\submenu6\ultimate\ultimate.txt DEL .\submenu6\ultimate\ultimate.txt
 	IF NOT EXIST TYPE nul > .\submenu6\ultimate\ultimate.txt
 
-	echo Estás preparado para la mejor herramienta de la historia?
-	echo !!Pulsa cualquier tecla para continuar¡¡
+	echo Are you ready for the best tool ever?
+	echo !! Press any key to continue!
 	pause>nul
 	
 	
 	
-	set /P nombre6=Dime el nombre para el SW:
-	set /P location6=Dime la localización del SW:
-	set /P conct_info6=Dime la información de contacto:
+	set /P nombre6=Tell me the name for the SW:
+	set /P location6=Tell me the location of the SW:
+	set /P conct_info6=Tell me the contact information:
 	
-	set /P GTWdir6=Dime la puerta de enlace de ADM:
+	set /P GTWdir6=Tell me the ADMINISTRATION gatewayN:
 	
-	set /P jumbo6=Dime el tamaño de la trama jumbo (de 1518 to 9216 bytes):
-	
-	set /P portVlan2_1_6=Dime desde qué puerto quieres que empiece la VLAN 2:
-	set /P portVlan2_2_6=Dime desde qué puerto quieres que termine la VLAN 2 [97m(si no tienes otro puertos que poner, pon el anterior y listo)[0m:
-	set /P portVlan3_1_6=Dime desde qué puerto quieres que empiece la VLAN 3:
-	set /P portVlan3_2_6=Dime desde qué puerto quieres que termine la VLAN 3 [97m(si no tienes otro puertos que poner, pon el anterior y listo)[0m:
-	set /P portVlan4_1_6=Dime desde qué puerto quieres que empiece la VLAN 4:
-	set /P portVlan4_2_6=Dime desde qué puerto quieres que termine la VLAN 4 [97m(si no tienes otro puertos que poner, pon el anterior y listo)[0m:
-	set /P portVlan6_1_6=Dime desde qué puerto quieres que empiece la VLAN 6:
-	set /P portVlan6_2_6=Dime desde qué puerto quieres que termine la VLAN 6 [97m(si no tienes otro puertos que poner, pon el anterior y listo)[0m:
+	set /P jumbo6=Tell me the size of the jumbo plot (from 1518 to 9216 bytes):
+	rem Let's say VLAN2 it's for ADMINISTATION, VLAN3 for MODERATORS, VLAN4 FOR USERS and VLAN6 FOR PRINTERS, ESCANERS...
+	set /P portVlan2_1_6=Tell me which port you want VLAN 2 to start from:
+	set /P portVlan2_2_6=Tell me which port you want VLAN 2 to end from [97m(if you have no other ports to put, put the previous one and you're done)[0m:
+	set /P portVlan3_1_6=Tell me which port you want VLAN 3 to start from:
+	set /P portVlan3_2_6=Tell me which port you want VLAN 3 to end from [97m(if you have no other ports to put, put the previous one and you're done)[0m:
+	set /P portVlan4_1_6=Tell me which port you want VLAN 4 to start from:
+	set /P portVlan4_2_6=Tell me which port you want VLAN 4 to end from [97m(if you have no other ports to put, put the previous one and you're done)[0m:
+	set /P portVlan6_1_6=Tell me which port you want VLAN 6 to start from:
+	set /P portVlan6_2_6=Tell me which port you want VLAN 6 to end from [97m(if you have no other ports to put, put the previous one and you're done)[0m:
 		
-	set /P portTrunk_6=Dime qué puerto quieres como troncal:
-	set /P portTrunk_6_2=Dime qué otro quieres como troncal [97m(si no tienes otro puertos que poner, pon el anterior y listo)[0m:
+	set /P portTrunk_6=Tell me which port you want as a trunk:
+	set /P portTrunk_6_2=Tell me what else you want as a trunk [97m(si no tienes otro puertos que poner, pon el anterior y listo)[0m:
 	set /a portTrunk_6_2_1=%portTrunk_6_2%-%portTrunk_6%
 	IF "%portTrunk_6_2_1%"=="0" (set /A portTrunk_6_2_1=%portTrunk_6_2%+%portTrunk_6%)
 	
-	set /P interface_dir_ADM_6=Dime que dirección IP quieres para el SW:
-	set /P interface_mask_ADM_6=Dime que máscara de Red utiliza la vlan ADM:
+	set /P interface_dir_ADM_6=Tell me what IP address you want for the SW:
+	set /P interface_mask_ADM_6=Tell me which netmask the ADMINISTRATION vlan uses:
 
 
 
@@ -1296,10 +1296,10 @@ rem subMENÚ [5] ---------------------------------------------------------------
 	
 	
 	
-	ECHO ==============GRACIAS!===============
+	ECHO ==============THANK YOU!===============
 	ECHO -------------------------------------
 	ECHO -------------------------------------
-	ECHO ======ESPERE A SER REEDIRIGIDO======
+	ECHO ======WAIT TO BE REDIRECTED======
 	timeout 0
 	goto MENU0
 		
@@ -1309,14 +1309,14 @@ cls
 chgport | findstr "COM"
 echo.
 set pCOM=""
-set /P pCOM=Indícame el puerto COM por el que se conecta el SW:
+set /P pCOM=Tell me the COM port through which the SW connects:
 IF "%pCOM%x"=="x" (goto MenuOpc0_7)
-echo.[1mTu puerto elegido ha sido el COM%pCOM%[0m
+echo.[1mYour chosen port has been the COM%pCOM%[0m
 echo.
-ECHO ==============GRACIAS!===============
+ECHO ==============THANK YOU!===============
 ECHO -------------------------------------
 ECHO -------------------------------------
-ECHO ======ESPERE A SER REEDIRIGIDO======
+ECHO ======WAIT TO BE REDIRECTED======
 timeout 3
 goto MENU0
 
@@ -1337,17 +1337,17 @@ for /f "tokens=5" %%w in (.\submenu8\GW.txt) do set GW=%%w
 for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 			
 		cls
-		ECHO. Modificar puertos - SUBMENÚ 8.	
+		ECHO. Modify Ports - SUBMENU 8.	
 		ECHO.     
 		ECHO.     
 		ECHO.     1.- 192.168.0.x
 		ECHO.     2.- 192.168.1.x
-		ECHO.     3.- Red Manual Escuelas
+		ECHO.     3.- Manual Net for 10.X.X.X
 		ECHO.     4.- DHCP
 		ECHO.    [93m 5.- IPCONFIG/ALL. [0m
-		ECHO.     6.- Elegir adaptador
-		ECHO.     7.- Configuración Manual.
-		ECHO.     8/Q.- Escribe "Q" para volver.
+		ECHO.     6.- Choose adapter
+		ECHO.     7.- Manual Configuration.
+		ECHO.     8/Q.- Type "Q" to go back.
 		echo.
 		echo.     ___________________________________
 		echo.     ^|                                          
@@ -1357,7 +1357,7 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 		echo.     ^|[1m%dns%[0m       [DNS]
 		Echo.     ^|__________________________________
 		set SubMenuOpc8=""
-		set /P SubMenuOpc8=Su Opción es:
+		set /P SubMenuOpc8=Your Choice is:
 		
 		IF "%SubMenuOpc8%x"   ==  "x"   goto subMenu8
 		IF "%SubMenuOpc8%"    ==  "8"  goto SubMenuOpc8_8
@@ -1372,12 +1372,12 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 		IF "%SubMenuOpc8%"    ==  "1"  goto SubMenuOpc8_1
 		
 		cls
-		ECHO ============ENTRADA INCORRECTA============
+		ECHO ============INCORRECT ENTRY============
 		ECHO -------------------------------------
-		ECHO Por favor, elige un número del menú
-		ECHO Menu [1-5] o elige '6 o Q' para salir.
+		ECHO Please choose a number from the menu
+		ECHO Menu [1-5] or choose '6 or Q' to exit.
 		ECHO -------------------------------------
-		ECHO ======ESPERE A SER REEDIRIGIDO======	
+		ECHO ======WAIT TO BE REDIRECTED======	
 		timeout 4
 		goto subMenu8		
 			
@@ -1391,7 +1391,7 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 				IF NOT EXIST TYPE nul > .\submenu8\configuraciones\192.168.0.x.bat
 				
 				set ip8_1=""
-				set /P ip8_1="Elige un rango del 1 al 253 (si lo dejas en blanco será 253): 192.168.0."
+				set /P ip8_1="Choose a range from 1 to 253 (if you leave it blank it will be 253): 192.168.0."
 				
 				
 				IF "%ip8_1%x" EQU "x" (goto subMenu8)
@@ -1403,7 +1403,7 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 				ECHO ==============NOP!===============
 				ECHO -------------------------------------
 				ECHO -------------------------------------
-				ECHO ======ESCRIBE ALGO, PORFAVOR======
+				ECHO ======WRITE SOMETHING, PLEASE======
 				timeout 3
 				goto subMenu8
 					
@@ -1413,10 +1413,10 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 					.\submenu8\direct\192.168.0.x.bat.lnk
 					
 					echo.
-					ECHO ==============GRACIAS!===============
+					ECHO ==============THANKS!===============
 					ECHO -------------------------------------
 					ECHO -------------------------------------
-					ECHO ======ESPERE A SER REEDIRIGIDO======
+					ECHO ======WAIT TO BE REDIRECTED======
 					timeout 3
 					goto subMenu8
 					
@@ -1426,10 +1426,10 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 					.\submenu8\direct\192.168.0.x.bat.lnk
 					
 					echo.
-					ECHO ==============GRACIAS!===============
+					ECHO ==============THANKS!===============
 					ECHO -------------------------------------
 					ECHO -------------------------------------
-					ECHO ======ESPERE A SER REEDIRIGIDO======
+					ECHO ======WAIT TO BE REDIRECTED======
 					timeout 3
 					goto subMenu8
 				
@@ -1442,7 +1442,7 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 				IF NOT EXIST TYPE nul > .\submenu8\configuraciones\192.168.1.x.bat
 				
 				set ip8_2=""
-				set /P ip8_2="Elige un rango del 1 al 253 (si lo dejas en blanco será 253): 192.168.1."
+				set /P ip8_2="Choose a range from 1 to 253 (if you leave it blank it will be 253): 192.168.1."
 				
 				
 				IF "%ip8_2%x" EQU "x" (goto subMenu8)
@@ -1454,7 +1454,7 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 				ECHO ==============NOP!===============
 				ECHO -------------------------------------
 				ECHO -------------------------------------
-				ECHO ======ESCRIBE ALGO, PORFAVOR======
+				ECHO ======WRITE SOMETHING, PLEASE======
 				timeout 3
 				goto subMenu8
 					
@@ -1464,10 +1464,10 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 					.\submenu8\direct\192.168.1.x.bat.lnk
 					
 					echo.
-					ECHO ==============GRACIAS!===============
+					ECHO ==============THNAKS!===============
 					ECHO -------------------------------------
 					ECHO -------------------------------------
-					ECHO ======ESPERE A SER REEDIRIGIDO======
+					ECHO ======WAIT TO BE REDIRECTED======
 					timeout 3
 					goto subMenu8
 					
@@ -1477,15 +1477,15 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 					.\submenu8\direct\192.168.1.x.bat.lnk
 					
 					echo.
-					ECHO ==============GRACIAS!===============
+					ECHO ==============THANKS!===============
 					ECHO -------------------------------------
 					ECHO -------------------------------------
-					ECHO ======ESPERE A SER REEDIRIGIDO======
+					ECHO ======WAIT TO BE REDIRECTED======
 					timeout 3
 					goto subMenu8	
 
 			:SubMenuOpc8_3
-			rem Red Junta
+			rem Manual Net for 10.X.X.X
 				cls
 				IF EXIST .\submenu8\configuraciones\redescuelas.bat DEL .\submenu8\configuraciones\redescuelas.bat
 				IF NOT EXIST TYPE nul > .\submenu8\configuraciones\redescuelas.bat
@@ -1493,9 +1493,9 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 				set ip8_3=""
 				set mascara8_3=""
 				set puerta8_3=""
-				set /P ip8_3="Indícame la dirección IP: 10."
-				set /P mascara8_3="Indícame la máscara: 255.255.255."
-				set /P puerta8_3="Indícame la GW: 10."
+				set /P ip8_3="Tell me the IP address: 10."
+				set /P mascara8_3="Tell me the mask: 255.255.255."
+				set /P puerta8_3="Tell me the GW: 10."
 				
 				
 				IF "%ip8_3%x" EQU "x" (goto subMenu8)
@@ -1509,7 +1509,7 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 				ECHO ==============NOP!===============
 				ECHO -------------------------------------
 				ECHO -------------------------------------
-				ECHO ======ESCRIBE CORRECTAMENTE, PORFAVOR======
+				ECHO ======TYPE CORRECTLY, PLEASE======
 				timeout 3
 				goto subMenu8
 					
@@ -1519,10 +1519,10 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 					.\submenu8\direct\redescuelas.bat.lnk
 					
 					echo.
-					ECHO ==============GRACIAS!===============
+					ECHO ==============THANKS!===============
 					ECHO -------------------------------------
 					ECHO -------------------------------------
-					ECHO ======ESPERE A SER REEDIRIGIDO======
+					ECHO ======WAIT TO BE REDIRECTED======
 					timeout 3
 					goto subMenu8
 
@@ -1539,10 +1539,10 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 				.\submenu8\direct\dhcp.bat.lnk
 					
 				echo.
-				ECHO ==============GRACIAS!===============
+				ECHO ==============THANKS!===============
 				ECHO -------------------------------------
 				ECHO -------------------------------------
-				ECHO ======ESPERE A SER REEDIRIGIDO======
+				ECHO ======WAIT TO BE REDIRECTED======
 				timeout 3
 				goto subMenu8		
 
@@ -1555,35 +1555,35 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 				ECHO.
 				ECHO.
 				ECHO.
-				ECHO ==============PRESIONE CULAQUIER TECLA PARA SALIR!===============				
+				ECHO ==============PRESS ANY KEY TO EXIT!===============				
 				pause>nul
 				
 				echo.
-				ECHO ==============GRACIAS!===============
+				ECHO ==============THANKS!===============
 				ECHO -------------------------------------
 				ECHO -------------------------------------
-				ECHO ======ESPERE A SER REEDIRIGIDO======
+				ECHO ======WAIT TO BE REDIRECTED======
 				timeout 3
 				goto subMenu8
 
 			:SubMenuOpc8_6
-			rem Elegir adaptador
+			rem Choose adapter
 				cls
 				
 				netsh interface ipv4 show interfaces
-				set /P interfaceYou=Indícame el número de la izquierda del adptador de red que quieres usar:
+				set /P interfaceYou=Tell me the number on the left of the network adapter you want to use:
 				
 
 				echo.
-				ECHO ==============GRACIAS!===============
+				ECHO ==============THANKS!===============
 				ECHO -------------------------------------
 				ECHO -------------------------------------
-				ECHO ======ESPERE A SER REEDIRIGIDO======
+				ECHO ======WAIT TO BE REDIRECTED======
 				timeout 3
 				goto subMenu8	
 
 			:SubMenuOpc8_7
-			rem Configuración Manual
+			rem Manual Configuration
 				cls
 				IF EXIST .\submenu8\configuraciones\confmanual.bat DEL .\submenu8\configuraciones\confmanual.bat
 				IF NOT EXIST TYPE nul > .\submenu8\configuraciones\confmanual.bat
@@ -1592,10 +1592,10 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 				set mascara8_7=""
 				set puerta8_7=""
 				set dns8_7=""
-				set /P ip8_7="Indícame la dirección IP: "
-				set /P mascara8_7="Indícame la máscara: "
-				set /P puerta8_7="Indícame la GW: "
-				set /P dns8_7="Indícame el DNS: "
+				set /P ip8_7="Tell me the IP address: "
+				set /P mascara8_7="Tell me the IP address: "
+				set /P puerta8_7="Tell me the GW: "
+				set /P dns8_7="Tell me the DNS: "
 				
 				
 				IF "%ip8_7%x" EQU "x" (goto subMenu8)
@@ -1609,7 +1609,7 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 				ECHO ==============NOP!===============
 				ECHO -------------------------------------
 				ECHO -------------------------------------
-				ECHO ======ESCRIBE CORRECTAMENTE, PORFAVOR======
+				ECHO ======TYPE CORRECTLY, PLEASE======
 				timeout 3
 				goto subMenu8
 					
@@ -1619,10 +1619,10 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 					.\submenu8\direct\confmanual.bat.lnk
 					
 					echo.
-					ECHO ==============GRACIAS!===============
+					ECHO ==============THANKS!===============
 					ECHO -------------------------------------
 					ECHO -------------------------------------
-					ECHO ======ESPERE A SER REEDIRIGIDO======
+					ECHO ======WAIT TO BE REDIRECTED======
 					timeout 3
 					goto subMenu8			
 			
@@ -1632,10 +1632,10 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 			
 			:SubMenuOpc8_8
 			cls
-			ECHO ==============GRACIAS!===============
+			ECHO ==============THANKS!===============
 			ECHO -------------------------------------
 			ECHO -------------------------------------
-			ECHO ======ESPERE A SER REEDIRIGIDO======
+			ECHO ======WAIT TO BE REDIRECTED======
 			timeout 0
 			goto MENU0
 		
@@ -1651,7 +1651,7 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 :MenuOpc0_9
 rem subMENÚ [9] ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 cls
-ECHO Información sobre todos los submenús y opciones
+ECHO Information about all submenus and options
 ECHO.
 ECHO.
 ECHO.
@@ -1734,16 +1734,14 @@ rem subMENÚ [10] --------------------------------------------------------------
 rem Bandera de castilla
 rem Del menú principal
 cls
-	ECHO ==============GRACIAS!===============
-echo [101;93m     Q     [0m[107;35m     o      [0m
-echo [101;93m    I I    [0m[107;35m   --I      [0m
-echo [101;93m    I_I    [0m[107;35m    --      [0m
-echo [107;35m     o     [0m[101;93m     Q      [0m
-echo [107;35m   --I     [0m[101;93m    I I     [0m
-echo [107;35m    --     [0m[101;93m    I_I     [0m
-echo @Yaw on StackOverflow
+	ECHO ==============THANKS!===============
+ _._     _,-'""`-._
+(,-.`._,'(       |\`-/|
+    `-.-' \ )-`( , o o)
+          `-    \`_`"'-
+echo @Hylosium on StackOverflow and Github
 
 	ECHO -------------------------------------
-	ECHO ======ESPERE A SER REEDIRIGIDO======
+	ECHO ======WAIT TO BE REDIRECTED======
 	timeout 3
 	exit
