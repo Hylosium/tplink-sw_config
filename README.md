@@ -53,12 +53,13 @@ When you execute the program it will ask you the Com_Port, the Baud Rate,
 </p>
 9. All the info about what command does this or that it in the 9 Option of the interactive menu. 😄
 💖 from 🇪🇸
+
 ## Dependencies
 
 * [Plink](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) - command-line back ends to PuTTy
 
 ## F.A.Q
 1. ¿Does it work with Linux?
-R. I don't think so, script was made for Windows 10, but I have intention of making a port for Linux, I hope you can make it work with a W10 Virtual Machine
+R. I don't think so, script was made for Windows 10, I hope you can make it work with a W10 Virtual Machine
 2. Why is showing me other IP configuration if I have selected other?
 R. This only happen if you have 2 or more IP configuration in the same adapter, you have selected corretly, and if you do change the IP configuration from the menu it will change but its shows other configuration because it takes the value of the first IP it sees, for example, if you have two IP configuration for one adapter it will take the first.
