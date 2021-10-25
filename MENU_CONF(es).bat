@@ -1,7 +1,6 @@
 ﻿                   
 :: -----------------TAREAS--->>>>>>-----------------
 :: 1. Limpiar código.
-:: 2. Traducir al inglés y publicar en GitHub.
 :: -------------------------------------------------
 @echo off
 rem Para que no muestre todo con mucho desorden?
@@ -1342,7 +1341,7 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 		ECHO.     
 		ECHO.     1.- 192.168.0.x
 		ECHO.     2.- 192.168.1.x
-		ECHO.     3.- Red Manual Escuelas
+		ECHO.     3.- Subredes de Clase A
 		ECHO.     4.- DHCP
 		ECHO.    [93m 5.- IPCONFIG/ALL. [0m
 		ECHO.     6.- Elegir adaptador
@@ -1485,7 +1484,7 @@ for /f "tokens=5" %%z in (.\submenu8\DNS.txt) do set dns=%%z
 					goto subMenu8	
 
 			:SubMenuOpc8_3
-			rem Red Junta
+			rem Subredes de Clase A
 				cls
 				IF EXIST .\submenu8\configuraciones\redescuelas.bat DEL .\submenu8\configuraciones\redescuelas.bat
 				IF NOT EXIST TYPE nul > .\submenu8\configuraciones\redescuelas.bat
