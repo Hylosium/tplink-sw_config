@@ -47,7 +47,7 @@ When you execute the program it will ask you the Com_Port, the Baud Rate,
 <p align="center">
     <img src="assets/7.PNG" alt="Terminal" style="margin-top: 20px;">
 </p>
-8. Know you are on the interactive menu where you can choose what options to use for the SW.
+8. Now you are on the interactive menu where you can choose what options to use for the SW.
 <p align="center">
     <img src="assets/8.PNG" alt="Terminal" style="margin-top: 20px;">
 </p>
