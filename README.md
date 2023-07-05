@@ -25,31 +25,31 @@ When you execute the program it will ask you the Com_Port, the Baud Rate,
 (for example, in my case it would be COM4, but I don't have the SW connected right know so it will not be avaidable)
 
 <p align="center">
-    <img src="assets/1.JPG" alt="Terminal" style="margin-top: 20px;">
+    <img src="assets/1.png" alt="Terminal" style="margin-top: 20px;">
 </p>
 3. It will ask you for the Baud Rate you want to use to connect to your SW, if you leave it blank it will be '34800'.
 <p align="center">
-    <img src="assets/3.PNG" alt="Terminal" style="margin-top: 20px;">
+    <img src="assets/3.png" alt="Terminal" style="margin-top: 20px;">
 </p>
 4. Will ask you for the value of Data Bits you want to use to connect to your SW, if you leave it blank it will be '8'.
 <p align="center">
-    <img src="assets/4.PNG" alt="Terminal" style="margin-top: 20px;">
+    <img src="assets/4.png" alt="Terminal" style="margin-top: 20px;">
 </p>
 5. Will ask you for the value of Parity you want to use to connect to your SW, if you leave it blank it will be 'n'.
 <p align="center">
-    <img src="assets/5.PNG" alt="Terminal" style="margin-top: 20px;">
+    <img src="assets/5.png" alt="Terminal" style="margin-top: 20px;">
 </p>
 6. Will ask you for the value of Stop Bits you want to use to connect to your SW, if you leave it blank it will be '1'.
 <p align="center">
-    <img src="assets/6.PNG" alt="Terminal" style="margin-top: 20px;">
+    <img src="assets/6.png" alt="Terminal" style="margin-top: 20px;">
 </p>
 7. Now it wil promt you the net adapters you have connected to your machine, select yours  by insterting the number on the left (for example, in my case in 14)
 <p align="center">
-    <img src="assets/7.PNG" alt="Terminal" style="margin-top: 20px;">
+    <img src="assets/7.png" alt="Terminal" style="margin-top: 20px;">
 </p>
 8. Now you are on the interactive menu where you can choose what options to use for the SW.
 <p align="center">
-    <img src="assets/8.PNG" alt="Terminal" style="margin-top: 20px;">
+    <img src="assets/8.png" alt="Terminal" style="margin-top: 20px;">
 </p>
 9. All the info about what command does this or that it in the 9 Option of the interactive menu. 😄
 💖 from 🇪🇸
