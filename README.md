@@ -1,3 +1,5 @@
+> ⚠️ this repository has become read-only, you will no longer receive updates or support
+
 # tplink-sw_config
  This is an interactive menu made for Windows 10 and can be used to acces and config a TP-LINK SW by USB cable, edit and save configurations without accesing the admin page all via batch file.  
  Program is avaidable in Spanish (my native langage) and English and working greatly in both versions for TP-LINK Switchs TL2600G-28TS,TL2600G-52TS in v1.0 and v2.0 tested.
